@@ -12,14 +12,15 @@ public class Tests {
     }
 
     @Test
-    public void simpleTest() {
+    public void openSignUpPage() {
         new HomePageSteps(Driver.getDriver())
                 .verifyHomePageIsDisplayed()
-                .clickGetStartedButton();
+                .clickGetStartedButton()
+                .verifySignUpPageIsDisplayed();
     }
 
     @Test
-    public void simpleTest2() {
+    public void openFeaturesPage() {
         new HomePageSteps(Driver.getDriver())
                 .verifyHomePageIsDisplayed()
                 .clickFeaturesButton()
@@ -27,7 +28,7 @@ public class Tests {
     }
 
     @Test
-    public void simpleTest3() {
+    public void openDownloadPage() {
         new HomePageSteps(Driver.getDriver())
                 .verifyHomePageIsDisplayed()
                 .clickDownloadButton()
