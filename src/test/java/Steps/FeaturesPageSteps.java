@@ -1,7 +1,7 @@
 package Steps;
 
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import page.FeaturesPage;
 
 public class FeaturesPageSteps extends BaseSteps {
@@ -14,7 +14,7 @@ public class FeaturesPageSteps extends BaseSteps {
 
     public FeaturesPageSteps verifyFeaturesPageIsDisplayed() {
         wait.until(driver -> featuresPage.isFeaturePageDisplayed());
-        Assert.assertTrue("Features page is not displayed.", featuresPage.isFeaturePageDisplayed());
+        Assert.assertTrue(featuresPage.isFeaturePageDisplayed(), "Features page is not displayed.");
         return this;
     }
 }

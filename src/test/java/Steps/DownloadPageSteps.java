@@ -1,7 +1,7 @@
 package Steps;
 
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import page.DownloadPage;
 
 public class DownloadPageSteps extends BaseSteps {
@@ -14,7 +14,7 @@ public class DownloadPageSteps extends BaseSteps {
 
     public DownloadPageSteps verifyDownloadPageIsDisplayed() {
         wait.until(driver -> downloadPage.isDownloadPageDisplayed());
-        Assert.assertTrue("Download page is not displayed.", downloadPage.isDownloadPageDisplayed());
+        Assert.assertTrue(downloadPage.isDownloadPageDisplayed(), "Download page is not displayed.");
         return this;
     }
 }

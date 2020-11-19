@@ -2,7 +2,7 @@ import Steps.HomePageSteps;
 import config.Driver;
 import org.testng.annotations.*;
 
-public class Tests {
+public class Tests3 {
 
     @BeforeMethod
     public void beforeMethod() {

@@ -1,7 +1,7 @@
 package Steps;
 
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import page.SignUpPage;
 
 public class SignUpPageSteps extends BaseSteps {
@@ -14,7 +14,7 @@ public class SignUpPageSteps extends BaseSteps {
 
     public SignUpPageSteps verifySignUpPageIsDisplayed() {
         wait.until(driver1 -> signUpPage.isSignUpPageDisplayed());
-        Assert.assertTrue("Sign Up page is not displayed", signUpPage.isSignUpPageDisplayed());
+        Assert.assertTrue(signUpPage.isSignUpPageDisplayed(), "Sign Up page is not displayed");
         return this;
     }
 }

@@ -1,7 +1,7 @@
 package Steps;
 
-import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 import page.HomePage;
 
 public class HomePageSteps extends BaseSteps {
@@ -14,7 +14,7 @@ public class HomePageSteps extends BaseSteps {
 
     public HomePageSteps verifyHomePageIsDisplayed() {
         wait.until(driver -> homePage.isHomePageDisplayed());
-        Assert.assertTrue("Home page is not displayed.", homePage.isHomePageDisplayed());
+        Assert.assertTrue(homePage.isHomePageDisplayed(), "Home page is not displayed.");
         return this;
     }
 
