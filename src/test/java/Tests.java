@@ -2,9 +2,15 @@ import Steps.HomePageSteps;
 import config.Driver;
 import org.junit.AfterClass;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class Tests {
+
+    @BeforeClass
+    public static void setupDriver(){
+        Driver.getDriver();
+    }
 
     @Before
     public void openHomePage() {

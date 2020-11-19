@@ -1,7 +1,6 @@
 package config;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
-import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -9,7 +8,6 @@ public class Driver {
 
     protected static WebDriver driver = null;
 
-    @BeforeClass
     public static WebDriver getDriver() {
         if (driver == null) {
             WebDriverManager.chromedriver().setup();
@@ -22,6 +20,7 @@ public class Driver {
 
     public static void quitDriver() {
         driver.quit();
+        driver = null;
     }
 
     public static void openHomePage() {
