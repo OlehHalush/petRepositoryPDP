@@ -1,48 +1,38 @@
 import Steps.HomePageSteps;
 import config.Driver;
-import org.junit.AfterClass;
-import org.junit.Before;
-import org.junit.BeforeClass;
-import org.junit.Test;
 
 public class Tests {
 
-    @BeforeClass
-    public static void setupDriver(){
+    public static void beforeClass() {
         Driver.getDriver();
     }
 
-    @Before
-    public void openHomePage() {
+    public static void beforeTest() {
         Driver.openHomePage();
     }
 
-    @Test
-    public void openSignUpPage() {
+    public static void openSignUpPage() {
         new HomePageSteps(Driver.getDriver())
                 .verifyHomePageIsDisplayed()
                 .clickGetStartedButton()
                 .verifySignUpPageIsDisplayed();
     }
 
-    @Test
-    public void openFeaturesPage() {
+    public static void openFeaturesPage() {
         new HomePageSteps(Driver.getDriver())
                 .verifyHomePageIsDisplayed()
                 .clickFeaturesButton()
                 .verifyFeaturesPageIsDisplayed();
     }
 
-    @Test
-    public void openDownloadPage() {
+    public static void openDownloadPage() {
         new HomePageSteps(Driver.getDriver())
                 .verifyHomePageIsDisplayed()
                 .clickDownloadButton()
                 .verifyDownloadPageIsDisplayed();
     }
 
-    @AfterClass
-    public static void quitDriver() {
+    public static void afterClass() {
         Driver.quitDriver();
     }
 }
