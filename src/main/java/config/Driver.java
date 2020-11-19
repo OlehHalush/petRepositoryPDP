@@ -6,21 +6,23 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class Driver {
 
-    protected static WebDriver driver = null;
+//    protected static WebDriver driver = null;
+    private static ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
+
 
     public static WebDriver getDriver() {
-        if (driver == null) {
+        if (driverThreadLocal.get() == null) {
             WebDriverManager.chromedriver().setup();
-            driver = new ChromeDriver();
-            driver.manage().window().maximize();
+            driverThreadLocal.set(new ChromeDriver());
+//            driverThreadLocal.get().manage().window().maximize();
         }
-        return driver;
+        return driverThreadLocal.get();
 
     }
 
     public static void quitDriver() {
-        driver.quit();
-        driver = null;
+        getDriver().quit();
+        driverThreadLocal.set(null);
     }
 
     public static void openHomePage() {
