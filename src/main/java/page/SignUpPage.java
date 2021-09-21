@@ -6,7 +6,7 @@ import org.openqa.selenium.support.FindBy;
 
 public class SignUpPage extends BasePage {
 
-    @FindBy(xpath = "//div[@class='cl-sign-up-container']//div[text()='Sign Up']")
+    @FindBy(xpath = "//div[@class='cl-sign-up-container']//div[contains(text(),'Sign up')]")
     private WebElement signUpHeader;
 
     public SignUpPage(WebDriver driver) {

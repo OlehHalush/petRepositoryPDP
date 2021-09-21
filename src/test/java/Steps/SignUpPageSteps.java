@@ -13,7 +13,7 @@ public class SignUpPageSteps extends BaseSteps {
     }
 
     public SignUpPageSteps verifySignUpPageIsDisplayed() {
-        wait.until(driver1 -> signUpPage.isSignUpPageDisplayed());
+        wait.until(driver -> signUpPage.isSignUpPageDisplayed());
         Assert.assertTrue(signUpPage.isSignUpPageDisplayed(), "Sign Up page is not displayed");
         return this;
     }
