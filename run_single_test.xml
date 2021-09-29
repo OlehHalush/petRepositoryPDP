@@ -1,0 +1,10 @@
+<suite name="Test-method Suite" parallel="methods" thread-count="1" >
+    <test name="Test-method test" group-by-instances="true">
+        <classes>
+            <class name="Tests" />
+            <methods>
+                <include name = "openSignUpPage" />
+            </methods>
+        </classes>
+    </test>
+</suite>

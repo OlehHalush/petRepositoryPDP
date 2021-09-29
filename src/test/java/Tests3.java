@@ -1,6 +1,7 @@
 import Steps.HomePageSteps;
 import config.Driver;
 import org.testng.annotations.*;
+import model.User;
 
 public class Tests3 {
 
@@ -22,7 +23,7 @@ public class Tests3 {
         new HomePageSteps(Driver.getDriver())
                 .verifyHomePageIsDisplayed()
                 .clickDownloadButton()
-                .verifyDownloadPageIsDisplayed();
+                .verifyDownloadPageIsDisplayed(new User("User3", "Password3"));
     }
 
     @Test

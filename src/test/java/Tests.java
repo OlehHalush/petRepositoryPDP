@@ -1,15 +1,26 @@
 import Steps.HomePageSteps;
 import config.Driver;
-import org.testng.annotations.*;
+import io.qameta.allure.*;
+import model.User;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
 
+
+@Epic("Epic1")
+@Feature("Feature1")
 public class Tests {
 
-    @BeforeMethod
+    @BeforeMethod(description = "Open home page")
     public void beforeMethod() {
         Driver.openHomePage();
     }
 
-    @Test
+    @Test(description = "Open sign up page")
+    @Description("description for 'Open sign up page' test")
+    @Issue("AMT-1111")
+    @Severity(SeverityLevel.CRITICAL)
+    @Story("Story1")
     public void openSignUpPage() {
         new HomePageSteps(Driver.getDriver())
                 .verifyHomePageIsDisplayed()
@@ -17,15 +28,11 @@ public class Tests {
                 .verifySignUpPageIsDisplayed();
     }
 
-    @Test
-    public void openDownloadPage() {
-        new HomePageSteps(Driver.getDriver())
-                .verifyHomePageIsDisplayed()
-                .clickDownloadButton()
-                .verifyDownloadPageIsDisplayed();
-    }
-
-    @Test
+    @Test(description = "Open features page")
+    @Description("description for 'Open features page' test")
+    @Issue("AMT-2222")
+    @Severity(SeverityLevel.TRIVIAL)
+    @Story("Story2")
     public void openFeaturesPage() {
         new HomePageSteps(Driver.getDriver())
                 .verifyHomePageIsDisplayed()
@@ -33,7 +40,19 @@ public class Tests {
                 .verifyFeaturesPageIsDisplayed();
     }
 
-    @AfterMethod
+    @Test(description = "Open download page")
+    @Description("description for 'Open download page' test")
+    @Issue("AMT-3333")
+    @Severity(SeverityLevel.BLOCKER)
+    @Story("Story3")
+    public void openDownloadPage() {
+        new HomePageSteps(Driver.getDriver())
+                .verifyHomePageIsDisplayed()
+                .clickDownloadButton()
+                .verifyDownloadPageIsDisplayed(new User("User1", "Password1"));
+    }
+
+    @AfterClass(description = "Quit drivers")
     public void afterMethod() {
         Driver.quitDriver();
     }
