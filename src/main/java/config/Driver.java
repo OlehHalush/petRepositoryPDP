@@ -5,6 +5,8 @@ import org.junit.BeforeClass;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import java.util.concurrent.TimeUnit;
+
 public class Driver {
 
     protected static WebDriver driver = null;
@@ -15,6 +17,7 @@ public class Driver {
             WebDriverManager.chromedriver().setup();
             driver = new ChromeDriver();
             driver.manage().window().maximize();
+            driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         }
         return driver;
 

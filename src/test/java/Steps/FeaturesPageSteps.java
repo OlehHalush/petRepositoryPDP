@@ -13,7 +13,6 @@ public class FeaturesPageSteps extends BaseSteps {
     }
 
     public FeaturesPageSteps verifyFeaturesPageIsDisplayed() {
-        wait.until(driver -> featuresPage.isFeaturePageDisplayed());
         Assert.assertTrue("Features page is not displayed.", featuresPage.isFeaturePageDisplayed());
         return this;
     }

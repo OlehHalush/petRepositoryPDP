@@ -13,7 +13,6 @@ public class DownloadPageSteps extends BaseSteps {
     }
 
     public DownloadPageSteps verifyDownloadPageIsDisplayed() {
-        wait.until(driver -> downloadPage.isDownloadPageDisplayed());
         Assert.assertTrue("Download page is not displayed.", downloadPage.isDownloadPageDisplayed());
         return this;
     }

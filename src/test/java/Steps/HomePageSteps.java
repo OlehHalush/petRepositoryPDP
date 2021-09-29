@@ -13,7 +13,6 @@ public class HomePageSteps extends BaseSteps {
     }
 
     public HomePageSteps verifyHomePageIsDisplayed() {
-        wait.until(driver -> homePage.isHomePageDisplayed());
         Assert.assertTrue("Home page is not displayed.", homePage.isHomePageDisplayed());
         return this;
     }

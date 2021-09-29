@@ -1,19 +1,17 @@
 package Steps;
 
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
-import java.time.Duration;
+import java.util.concurrent.TimeUnit;
 
 public class BaseSteps {
 
-    private static final int TIMEOUT = 5;
+    private static final int TIMEOUT = 2;
 
     protected WebDriver driver;
-    protected WebDriverWait wait;
 
     public BaseSteps(WebDriver driver) {
+        driver.manage().timeouts().implicitlyWait(2, TimeUnit.SECONDS);
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT).toMillis());
     }
 }
