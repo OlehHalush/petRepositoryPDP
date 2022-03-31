@@ -1,6 +1,4 @@
-package com.customertimes.picklist;
-
-import com.sforce.soap.partner.sobject.SObject;
+package helpers.picklist;
 
 import java.util.EnumSet;
 
@@ -24,12 +22,12 @@ public abstract class Picklist {
 //        return null;
 //    }
 
-    public <T extends Picklist> T getByApiValue(Enum<?> aClass, String label) {
-        for (T en : EnumSet.allOf(aClass)) {
-            if (en.apiName.equalsIgnoreCase(label)) {
-                return en;
-            }
-        }
-        return null;
-    }
+//    public <T extends Picklist> T getByApiValue(Enum<?> aClass, String label) {
+//        for (T en : EnumSet.allOf(aClass)) {
+//            if (en.apiName.equalsIgnoreCase(label)) {
+//                return en;
+//            }
+//        }
+//        return null;
+//    }
 }

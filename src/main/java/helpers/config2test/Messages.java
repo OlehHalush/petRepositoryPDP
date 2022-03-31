@@ -1,12 +1,10 @@
-package com.customertimes.config;
+package helpers.config2test;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
-import static com.customertimes.config.Context.RUN_MARKET;
 
 public class Messages {
 

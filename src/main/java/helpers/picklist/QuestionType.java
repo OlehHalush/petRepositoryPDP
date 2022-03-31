@@ -1,4 +1,4 @@
-package picklist;
+package helpers.picklist;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

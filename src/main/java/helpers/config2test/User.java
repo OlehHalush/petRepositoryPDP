@@ -1,4 +1,4 @@
-package com.customertimes.config;
+package helpers.config2test;
 
 import java.time.LocalDateTime;
 import java.time.temporal.ChronoUnit;

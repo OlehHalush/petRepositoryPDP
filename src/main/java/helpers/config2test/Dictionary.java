@@ -1,4 +1,4 @@
-package com.customertimes.config;
+package helpers.config2test;
 
 import java.io.BufferedReader;
 import java.io.FileReader;

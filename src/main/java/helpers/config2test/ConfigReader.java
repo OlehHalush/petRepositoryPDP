@@ -1,6 +1,6 @@
-package com.customertimes.config;
+package helpers.config2test;
 
-import com.customertimes.util.ThreadUtils;
+import helpers.utils.ThreadUtils;
 
 import java.io.FileInputStream;
 import java.io.IOException;

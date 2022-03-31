@@ -1,7 +1,5 @@
-package com.customertimes.api;
+package helpers.api;
 
-import com.customertimes.config.AppUser;
-import com.customertimes.config.Parameter;
 import com.sforce.soap.partner.Connector;
 import com.sforce.soap.partner.DeleteResult;
 import com.sforce.soap.partner.PartnerConnection;
@@ -9,6 +7,8 @@ import com.sforce.soap.partner.SaveResult;
 import com.sforce.soap.partner.sobject.SObject;
 import com.sforce.ws.ConnectionException;
 import com.sforce.ws.ConnectorConfig;
+import helpers.config2test.AppUser;
+import helpers.config2test.Parameter;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,7 +27,7 @@ public class WSC {
         }
     }
 
-    public static String create(SObject sObject, AppUser appUser){
+    public static String create(SObject sObject, AppUser appUser) {
         AppUser previousUser = AppUser.getCurrentUser();
         AppUser.switchToUser(appUser);
         String recordId = create(sObject);
@@ -46,7 +46,7 @@ public class WSC {
         }
     }
 
-    public static void update(SObject sObject, AppUser appUser){
+    public static void update(SObject sObject, AppUser appUser) {
         AppUser previousUser = AppUser.getCurrentUser();
         AppUser.switchToUser(appUser);
         update(sObject);
@@ -65,7 +65,7 @@ public class WSC {
         }
     }
 
-    public static void delete(String id, AppUser appUser){
+    public static void delete(String id, AppUser appUser) {
         AppUser previousUser = AppUser.getCurrentUser();
         AppUser.switchToUser(appUser);
         delete(id);
@@ -84,7 +84,7 @@ public class WSC {
         }
     }
 
-    public static void delete(List<String> ids, AppUser appUser){
+    public static void delete(List<String> ids, AppUser appUser) {
         AppUser previousUser = AppUser.getCurrentUser();
         AppUser.switchToUser(appUser);
         delete(ids);

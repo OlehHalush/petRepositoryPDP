@@ -1,14 +1,17 @@
-package com.customertimes.config;
+package helpers.config2test;
 
-import com.customertimes.util.ThreadUtils;
+import helpers.utils.ThreadUtils;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriverException;
 
+import java.net.UnknownHostException;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
 import java.util.stream.Collectors;
 
 public class Driver {
@@ -44,7 +47,7 @@ public class Driver {
         }
     }
 
-    public static boolean isSessionActive(AppUser appUser) {
+    public static boolean isSessionActive(AppUser appUser) throws UnknownHostException {
         return Driver.getDrivers().get(appUser) != null && !Driver.getDrivers().get(appUser).isExpired();
     }
 

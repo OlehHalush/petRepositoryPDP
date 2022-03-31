@@ -1,4 +1,4 @@
-package utils;
+package helpers.utils;
 
 import kong.unirest.GetRequest;
 import kong.unirest.HttpRequest;

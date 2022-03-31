@@ -1,6 +1,6 @@
-package utils;
+package helpers.utils;
 
-import com.customertimes.config.Session;
+import helpers.config2test.Session;
 import org.openqa.selenium.WebDriverException;
 
 import java.time.Duration;
@@ -32,8 +32,7 @@ public class WaitUtils {
                 if (e.getMessage().contains(Session.EXCEPTION_APPIUM_SERVER_SIDE)) {
                     throw e;
                 }
-            }
-            catch (Exception ignored) {
+            } catch (Exception ignored) {
             }
             waitABit(pollInterval);
         }
@@ -60,8 +59,7 @@ public class WaitUtils {
                 if (e.getMessage().contains(Session.EXCEPTION_APPIUM_SERVER_SIDE)) {
                     throw e;
                 }
-            }
-            catch (Exception e) {
+            } catch (Exception e) {
                 exceptionMessage = e.getMessage();
             }
             waitABit(pollInterval);

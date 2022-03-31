@@ -1,12 +1,18 @@
-package com.customertimes.config;
+package helpers.config2test;
 
-import com.customertimes.api.REST;
-import com.customertimes.util.NetUtils;
-import com.customertimes.util.Timeouts;
+import helpers.api.REST;
+import helpers.utils.NetUtils;
+import helpers.utils.Timeouts;
 import io.appium.java_client.MobileElement;
 import io.appium.java_client.ios.IOSDriver;
 import org.openqa.selenium.WebDriverException;
 
+import javax.mail.Authenticator;
+import javax.mail.NoSuchProviderException;
+import javax.mail.Store;
+import javax.mail.URLName;
+import java.net.UnknownHostException;
+import java.util.Properties;
 import java.util.concurrent.TimeUnit;
 
 public class Session {
@@ -65,7 +71,7 @@ public class Session {
     //Check if idle time is less then 5 min
     // And session is in Running status because
     // BrowserStack terminates idle sessions over 5 min
-    public boolean isExpired() {
+    public boolean isExpired() throws UnknownHostException {
         return hasIdleTimePassed() && !NetUtils.isLocalHost(AppUser.getCurrentUser().getAppiumUrl()) && !sessionIsStillRunning();
     }
 
@@ -82,5 +88,17 @@ public class Session {
 
     private boolean sessionIsStillRunning() {
         return REST.isBrowserstackSessionInRunningStatus(sessionId);
+    }
+
+    public static Session getInstance(Properties props) {
+        return new Session(props, (Authenticator) null);
+    }
+
+    public Store getStore() throws NoSuchProviderException {
+        return this.getStore(this.getProperty("mail.store.protocol"));
+    }
+
+    public Store getStore(String protocol) throws NoSuchProviderException {
+        return this.getStore(new URLName(protocol, (String)null, -1, (String)null, (String)null, (String)null));
     }
 }

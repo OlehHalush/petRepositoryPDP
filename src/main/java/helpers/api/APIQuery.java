@@ -1,11 +1,8 @@
-package com.customertimes.api;
+package helpers.api;
 
-import com.customertimes.config.AppUser;
-import com.customertimes.config.Context;
-import com.customertimes.config.Dictionary;
-import com.customertimes.config.Parameter;
-import com.customertimes.picklist.*;
 import com.sforce.soap.partner.sobject.SObject;
+import helpers.config2test.AppUser;
+import helpers.config2test.Dictionary;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
@@ -14,7 +11,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static com.customertimes.api.WSC.query;
+import static helpers.api.WSC.query;
 
 public class APIQuery {
 
@@ -103,15 +100,15 @@ public class APIQuery {
         }
     }
 
-    public static List<String> getLinkedWholesalersIds(final String accountId) {
-        try {
-            final SObject[] records = query("SELECT id, name, SFDC_Partner_Id__c FROM Account_Relation__c WHERE SFDC_Id__c = '" + accountId + "' " +
-                    "AND Partner_Function__c = '" + PartnerFunction.WHOLESALER.getApiName() + "'");
-            return (Arrays.stream(records).map(e -> e.getSObjectField("Id").toString()).collect(Collectors.toCollection(ArrayList::new)));
-        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
-            return null;
-        }
-    }
+//    public static List<String> getLinkedWholesalersIds(final String accountId) {
+//        try {
+//            final SObject[] records = query("SELECT id, name, SFDC_Partner_Id__c FROM Account_Relation__c WHERE SFDC_Id__c = '" + accountId + "' " +
+//                    "AND Partner_Function__c = '" + PartnerFunction.WHOLESALER.getApiName() + "'");
+//            return (Arrays.stream(records).map(e -> e.getSObjectField("Id").toString()).collect(Collectors.toCollection(ArrayList::new)));
+//        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+//            return null;
+//        }
+//    }
 
     @Nullable
     public static String getContactId(String contactName) {
@@ -238,7 +235,7 @@ public class APIQuery {
 
     public static String getTerritoryAssignmentId(String accountId, String territoryId) {
         try {
-            return WSC.query("SELECT Id FROM Account_Territory_Junction__c WHERE Account_Territory_Junction__c = '" + accountId + "' AND Territory_Junction__c = '" + territoryId + "'")[0]
+            return query("SELECT Id FROM Account_Territory_Junction__c WHERE Account_Territory_Junction__c = '" + accountId + "' AND Territory_Junction__c = '" + territoryId + "'")[0]
                     .getSObjectField("Id").toString();
         } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
             return null;
@@ -253,13 +250,13 @@ public class APIQuery {
         }
     }
 
-    public static VisitType getVisitType(String visitId) {
-        try {
-            return VisitType.getByApiName(query("SELECT Type__c FROM Visit__c WHERE Id = '" + visitId + "'")[0].getSObjectField("Type__c").toString());
-        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
-            return null;
-        }
-    }
+//    public static VisitType getVisitType(String visitId) {
+//        try {
+//            return VisitType.getByApiName(query("SELECT Type__c FROM Visit__c WHERE Id = '" + visitId + "'")[0].getSObjectField("Type__c").toString());
+//        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+//            return null;
+//        }
+//    }
 
     public static String getAccountLatestVisitStartTime(String accountId) {
         try {
@@ -294,13 +291,13 @@ public class APIQuery {
         }
     }
 
-    public static String getConceptsRecordTypeId(ConceptsRecordTypeDeveloperName conceptsRecordTypeDeveloperName) {
-        try {
-            return query("SELECT Id FROM RecordType WHERE DeveloperName = '" + conceptsRecordTypeDeveloperName.getApiName() + "' AND SobjectType = 'Concepts__c'")[0].getSObjectField("Id").toString();
-        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
-            return null;
-        }
-    }
+//    public static String getConceptsRecordTypeId(ConceptsRecordTypeDeveloperName conceptsRecordTypeDeveloperName) {
+//        try {
+//            return query("SELECT Id FROM RecordType WHERE DeveloperName = '" + conceptsRecordTypeDeveloperName.getApiName() + "' AND SobjectType = 'Concepts__c'")[0].getSObjectField("Id").toString();
+//        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+//            return null;
+//        }
+//    }
 
     public static String getConceptsBrand(String conceptsId) {
         try {
@@ -341,13 +338,13 @@ public class APIQuery {
         }
     }
 
-    public static String getSurveySummaryRecordTypeId(SurveySummaryRecordTypeDeveloperName surveySummaryTypeName) {
-        try {
-            return query("SELECT Id FROM RecordType WHERE DeveloperName = '" + surveySummaryTypeName.getApiName() + "' AND SobjectType = 'Survey_Summary__c'")[0].getSObjectField("Id").toString();
-        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
-            return null;
-        }
-    }
+//    public static String getSurveySummaryRecordTypeId(SurveySummaryRecordTypeDeveloperName surveySummaryTypeName) {
+//        try {
+//            return query("SELECT Id FROM RecordType WHERE DeveloperName = '" + surveySummaryTypeName.getApiName() + "' AND SobjectType = 'Survey_Summary__c'")[0].getSObjectField("Id").toString();
+//        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+//            return null;
+//        }
+//    }
 
     public static String getAccountLastSurveySummaryId(String accountId, String surveySummaryRecordTypeId) {
         try {
@@ -379,34 +376,34 @@ public class APIQuery {
                 .collect(Collectors.toCollection(ArrayList::new));
     }
 
-    public static List<String> getLinkedAccountIds(final String accountId) {
-        try {
-            final SObject[] records = query("SELECT id, SFDC_Partner_Id__c FROM Account_Relation__c WHERE SFDC_Id__c = '" + accountId + "' " +
-                    "AND Partner_Function__c = '" + PartnerFunction.ACCOUNT.getApiName() + "'");
-            return (Arrays.stream(records).map(e -> e.getSObjectField("Id").toString()).collect(Collectors.toCollection(ArrayList::new)));
-        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
-            return null;
-        }
-    }
-
-    public static String getContactRecordTypeId() {
-        try {
-            switch (Parameter.RUN_MARKET.get()) {
-                case "FR":
-                    return query("SELECT Id FROM RecordType WHERE Name = 'France' AND SobjectType = 'Contact'")[0].getSObjectField("Id").toString();
-                case "PT":
-                    return query("SELECT Id FROM RecordType WHERE Name = 'Portugal' AND SobjectType = 'Contact'")[0].getSObjectField("Id").toString();
-                case "AU":
-                    return query("SELECT Id FROM RecordType WHERE Name = 'Austria' AND SobjectType = 'Contact'")[0].getSObjectField("Id").toString();
-                case "SW":
-                    return query("SELECT Id FROM RecordType WHERE Name = 'Switzerland' AND SobjectType = 'Contact'")[0].getSObjectField("Id").toString();
-                default:
-                    throw new IllegalStateException("No implementation for " + Parameter.RUN_MARKET.get());
-            }
-        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
-            return null;
-        }
-    }
+//    public static List<String> getLinkedAccountIds(final String accountId) {
+//        try {
+//            final SObject[] records = query("SELECT id, SFDC_Partner_Id__c FROM Account_Relation__c WHERE SFDC_Id__c = '" + accountId + "' " +
+//                    "AND Partner_Function__c = '" + PartnerFunction.ACCOUNT.getApiName() + "'");
+//            return (Arrays.stream(records).map(e -> e.getSObjectField("Id").toString()).collect(Collectors.toCollection(ArrayList::new)));
+//        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+//            return null;
+//        }
+//    }
+//
+//    public static String getContactRecordTypeId() {
+//        try {
+//            switch (Parameter.RUN_MARKET.get()) {
+//                case "FR":
+//                    return query("SELECT Id FROM RecordType WHERE Name = 'France' AND SobjectType = 'Contact'")[0].getSObjectField("Id").toString();
+//                case "PT":
+//                    return query("SELECT Id FROM RecordType WHERE Name = 'Portugal' AND SobjectType = 'Contact'")[0].getSObjectField("Id").toString();
+//                case "AU":
+//                    return query("SELECT Id FROM RecordType WHERE Name = 'Austria' AND SobjectType = 'Contact'")[0].getSObjectField("Id").toString();
+//                case "SW":
+//                    return query("SELECT Id FROM RecordType WHERE Name = 'Switzerland' AND SobjectType = 'Contact'")[0].getSObjectField("Id").toString();
+//                default:
+//                    throw new IllegalStateException("No implementation for " + Parameter.RUN_MARKET.get());
+//            }
+//        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+//            return null;
+//        }
+//    }
 
     public static String getAccountCity(String accountName) {
         try {
@@ -601,18 +598,18 @@ public class APIQuery {
                 .collect(Collectors.toCollection(ArrayList::new)).size();
     }
 
-    public static int getQuantityOfAllAccountType() {
-        final SObject[] records = query("SELECT Id FROM AccountShare WHERE (" +
-                "Account.RecordType.Id='" + APIQuery.getRecordTypeIdByAccountType(AccountType.CUSTOMER.getApiName()) + "' OR " +
-                "Account.RecordType.Id='" + APIQuery.getRecordTypeIdByAccountType(AccountType.PROSPECT.getApiName()) + "' OR " +
-                "Account.RecordType.Id='" + APIQuery.getRecordTypeIdByAccountType(AccountType.WHOLESALER.getApiName()) + "' OR " +
-                "Account.RecordType.Id='" + APIQuery.getRecordTypeIdByAccountType(AccountType.HEADOFFICE.getApiName()) + "') AND " +
-                "UserOrGroupId='" + APIQuery.getUserIdByUsername(AppUser.getCurrentUser().getUsername()) + "' AND " +
-                "AccountAccessLevel='Edit'");
-        return Arrays.stream(records)
-                .map((e) -> e.getSObjectField("Id").toString())
-                .collect(Collectors.toCollection(ArrayList::new)).size();
-    }
+//    public static int getQuantityOfAllAccountType() {
+//        final SObject[] records = query("SELECT Id FROM AccountShare WHERE (" +
+//                "Account.RecordType.Id='" + APIQuery.getRecordTypeIdByAccountType(AccountType.CUSTOMER.getApiName()) + "' OR " +
+//                "Account.RecordType.Id='" + APIQuery.getRecordTypeIdByAccountType(AccountType.PROSPECT.getApiName()) + "' OR " +
+//                "Account.RecordType.Id='" + APIQuery.getRecordTypeIdByAccountType(AccountType.WHOLESALER.getApiName()) + "' OR " +
+//                "Account.RecordType.Id='" + APIQuery.getRecordTypeIdByAccountType(AccountType.HEADOFFICE.getApiName()) + "') AND " +
+//                "UserOrGroupId='" + APIQuery.getUserIdByUsername(AppUser.getCurrentUser().getUsername()) + "' AND " +
+//                "AccountAccessLevel='Edit'");
+//        return Arrays.stream(records)
+//                .map((e) -> e.getSObjectField("Id").toString())
+//                .collect(Collectors.toCollection(ArrayList::new)).size();
+//    }
 
     public static String getLatestAccountNoteByAccountId(String accountId) {
         try {
@@ -623,24 +620,24 @@ public class APIQuery {
         }
     }
 
-    public static List<String> getRelatedApprovalUserHierarchyList(String username) {
-        SObject[] records = query("SELECT Core_ApprovalUserHierarchy__c FROM Core_UsersRelatedToApprovalUserHierarchy__c " +
-                "WHERE Core_ApprovalUserHierarchy__r.Core_Market__c = '" + CountryCode.getByValue(Context.RUN_MARKET.name()).getApiName()
-                + "' and Core_User__r.Username = '" + username + "'");
-        return Arrays.stream(records)
-                .map(e -> e.getSObjectField("Core_ApprovalUserHierarchy__c").toString())
-                .collect(Collectors.toCollection(ArrayList::new));
-    }
-
-    public static List<String> getHierarchyUserListEntireAllApprovalHierarchyWhereUserRelated(String username) {
-        SObject[] records = query("SELECT Id FROM Core_HierarchyUser__c WHERE Core_HierarchyUser__c IN " +
-                "(SELECT Core_ApprovalUserHierarchy__c FROM Core_UsersRelatedToApprovalUserHierarchy__c " +
-                "WHERE Core_ApprovalUserHierarchy__r.Core_Market__c = '" + CountryCode.getByValue(Context.RUN_MARKET.name()).getApiName() + "'" +
-                " and Core_User__r.Username = '" + username + "')");
-        return Arrays.stream(records)
-                .map(e -> e.getSObjectField("Id").toString())
-                .collect(Collectors.toCollection(ArrayList::new));
-    }
+//    public static List<String> getRelatedApprovalUserHierarchyList(String username) {
+//        SObject[] records = query("SELECT Core_ApprovalUserHierarchy__c FROM Core_UsersRelatedToApprovalUserHierarchy__c " +
+//                "WHERE Core_ApprovalUserHierarchy__r.Core_Market__c = '" + CountryCode.getByValue(Context.RUN_MARKET.name()).getApiName()
+//                + "' and Core_User__r.Username = '" + username + "'");
+//        return Arrays.stream(records)
+//                .map(e -> e.getSObjectField("Core_ApprovalUserHierarchy__c").toString())
+//                .collect(Collectors.toCollection(ArrayList::new));
+//    }
+//
+//    public static List<String> getHierarchyUserListEntireAllApprovalHierarchyWhereUserRelated(String username) {
+//        SObject[] records = query("SELECT Id FROM Core_HierarchyUser__c WHERE Core_HierarchyUser__c IN " +
+//                "(SELECT Core_ApprovalUserHierarchy__c FROM Core_UsersRelatedToApprovalUserHierarchy__c " +
+//                "WHERE Core_ApprovalUserHierarchy__r.Core_Market__c = '" + CountryCode.getByValue(Context.RUN_MARKET.name()).getApiName() + "'" +
+//                " and Core_User__r.Username = '" + username + "')");
+//        return Arrays.stream(records)
+//                .map(e -> e.getSObjectField("Id").toString())
+//                .collect(Collectors.toCollection(ArrayList::new));
+//    }
 
     public static List<String> getHierarchyUsersByContactId(String contactId) {
         SObject[] records = query("SELECT Id FROM Core_HierarchyUser__c WHERE Core_Contact__c = '" + contactId + "'");
@@ -1028,25 +1025,25 @@ public class APIQuery {
         }
     }
 
-    public static List<String> getAccountVendorsRelationIdsByAccountId(final String accountId) {
-        try {
-            final SObject[] records = query("SELECT Id FROM Account_Relation__c WHERE SFDC_Id__c = '" + accountId + "' " +
-                    "AND Partner_Function__c = '" + PartnerFunction.VENDOR.getApiName() + "'");
-            return (Arrays.stream(records).map(e -> e.getSObjectField("Id").toString()).collect(Collectors.toCollection(ArrayList::new)));
-        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
-            return null;
-        }
-    }
-
-    public static List<String> getAccountVendorsIdsByAccountId(final String accountId) {
-        try {
-            final SObject[] records = query("SELECT SFDC_Partner_Id__c FROM Account_Relation__c WHERE SFDC_Id__c = '" + accountId + "' " +
-                    "AND Partner_Function__c = '" + PartnerFunction.VENDOR.getApiName() + "'");
-            return (Arrays.stream(records).map(e -> e.getSObjectField("SFDC_Partner_Id__c").toString()).collect(Collectors.toCollection(ArrayList::new)));
-        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
-            return null;
-        }
-    }
+//    public static List<String> getAccountVendorsRelationIdsByAccountId(final String accountId) {
+//        try {
+//            final SObject[] records = query("SELECT Id FROM Account_Relation__c WHERE SFDC_Id__c = '" + accountId + "' " +
+//                    "AND Partner_Function__c = '" + PartnerFunction.VENDOR.getApiName() + "'");
+//            return (Arrays.stream(records).map(e -> e.getSObjectField("Id").toString()).collect(Collectors.toCollection(ArrayList::new)));
+//        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+//            return null;
+//        }
+//    }
+//
+//    public static List<String> getAccountVendorsIdsByAccountId(final String accountId) {
+//        try {
+//            final SObject[] records = query("SELECT SFDC_Partner_Id__c FROM Account_Relation__c WHERE SFDC_Id__c = '" + accountId + "' " +
+//                    "AND Partner_Function__c = '" + PartnerFunction.VENDOR.getApiName() + "'");
+//            return (Arrays.stream(records).map(e -> e.getSObjectField("SFDC_Partner_Id__c").toString()).collect(Collectors.toCollection(ArrayList::new)));
+//        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+//            return null;
+//        }
+//    }
 
     public static List<String> getContractAgreementVendorIdsByAccountId(final String accountId) {
         try {
@@ -1057,24 +1054,24 @@ public class APIQuery {
         }
     }
 
-    public static String getVendorRecordTypeId() {
-        try {
-            switch (Parameter.RUN_MARKET.get()) {
-                case "FR":
-                    return query("SELECT Id FROM RecordType WHERE Name = 'Vendor - France' AND SobjectType = 'Account'")[0].getSObjectField("Id").toString();
-                case "PT":
-                    return query("SELECT Id FROM RecordType WHERE Name = 'Vendor - Portugal' AND SobjectType = 'Account'")[0].getSObjectField("Id").toString();
-                case "AU":
-                    return query("SELECT Id FROM RecordType WHERE Name = 'Vendor - Austria' AND SobjectType = 'Account'")[0].getSObjectField("Id").toString();
-                case "SW":
-                    return query("SELECT Id FROM RecordType WHERE Name = 'Vendor - Switzerland' AND SobjectType = 'Account'")[0].getSObjectField("Id").toString();
-                default:
-                    throw new IllegalStateException("No implementation for " + Parameter.RUN_MARKET.get());
-            }
-        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
-            return null;
-        }
-    }
+//    public static String getVendorRecordTypeId() {
+//        try {
+//            switch (Parameter.RUN_MARKET.get()) {
+//                case "FR":
+//                    return query("SELECT Id FROM RecordType WHERE Name = 'Vendor - France' AND SobjectType = 'Account'")[0].getSObjectField("Id").toString();
+//                case "PT":
+//                    return query("SELECT Id FROM RecordType WHERE Name = 'Vendor - Portugal' AND SobjectType = 'Account'")[0].getSObjectField("Id").toString();
+//                case "AU":
+//                    return query("SELECT Id FROM RecordType WHERE Name = 'Vendor - Austria' AND SobjectType = 'Account'")[0].getSObjectField("Id").toString();
+//                case "SW":
+//                    return query("SELECT Id FROM RecordType WHERE Name = 'Vendor - Switzerland' AND SobjectType = 'Account'")[0].getSObjectField("Id").toString();
+//                default:
+//                    throw new IllegalStateException("No implementation for " + Parameter.RUN_MARKET.get());
+//            }
+//        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+//            return null;
+//        }
+//    }
 
     public static String getContractAgreementAccountIdByContractAgreementId(String contractAgreementId) {
         try {
@@ -1142,26 +1139,26 @@ public class APIQuery {
         }
     }
 
-    public static String getContractJointBusinessPlanIdByTypeAndAgreementId(JointBusinessPlanType jbpType, String contractAgreementId) {
-        try {
-            return query("SELECT Id FROM Joint_business_plan__c WHERE Core_JBPType__c = '" + jbpType.getApiName() +
-                    "' and Contract_Agreement__c ='" + contractAgreementId + "'")
-                    [0].getSObjectField("Id").toString();
-        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
-            return null;
-        }
-    }
-
-    public static String getContractJointBusinessPlanIdByTypeAndAgreementIdAmountAndDate(
-            JointBusinessPlanType jointBusinessPlanType, String contractAgreementId, String amount, String date) {
-        try {
-            return query("SELECT Id FROM Joint_business_plan__c WHERE Core_JBPType__c = '" + jointBusinessPlanType.getApiName() +
-                    "' and Contract_Agreement__c ='" + contractAgreementId + "' and Amount__c = " + amount + " and Date__c = " + date + "")
-                    [0].getSObjectField("Id").toString();
-        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
-            return null;
-        }
-    }
+//    public static String getContractJointBusinessPlanIdByTypeAndAgreementId(JointBusinessPlanType jbpType, String contractAgreementId) {
+//        try {
+//            return query("SELECT Id FROM Joint_business_plan__c WHERE Core_JBPType__c = '" + jbpType.getApiName() +
+//                    "' and Contract_Agreement__c ='" + contractAgreementId + "'")
+//                    [0].getSObjectField("Id").toString();
+//        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+//            return null;
+//        }
+//    }
+//
+//    public static String getContractJointBusinessPlanIdByTypeAndAgreementIdAmountAndDate(
+//            JointBusinessPlanType jointBusinessPlanType, String contractAgreementId, String amount, String date) {
+//        try {
+//            return query("SELECT Id FROM Joint_business_plan__c WHERE Core_JBPType__c = '" + jointBusinessPlanType.getApiName() +
+//                    "' and Contract_Agreement__c ='" + contractAgreementId + "' and Amount__c = " + amount + " and Date__c = " + date + "")
+//                    [0].getSObjectField("Id").toString();
+//        } catch (ArrayIndexOutOfBoundsException | NullPointerException e) {
+//            return null;
+//        }
+//    }
 
     public static String getDefaultValueByMarketingSupportName(String name) {
         try {
@@ -1315,7 +1312,7 @@ public class APIQuery {
 
     public static String getContractPaymentApprovalFileNameByContractAgreementId(String contractAgreementId) {
         try {
-            Object contentDocumentSObject = WSC.query("SELECT ContentDocument.Title FROM ContentDocumentLink WHERE LinkedEntityId IN " +
+            Object contentDocumentSObject = query("SELECT ContentDocument.Title FROM ContentDocumentLink WHERE LinkedEntityId IN " +
                     "(SELECT id FROM Core_ContractPayment__c WHERE Core_ContractAgreement__c = '" + contractAgreementId + "') " +
                     "ORDER BY SystemModstamp DESC")
                     [0].getSObjectField("ContentDocument");
@@ -1667,7 +1664,7 @@ public class APIQuery {
 
     public static Boolean getPouringCheckboxBySupervisionId(String supervisionId) {
         try {
-            return Boolean.parseBoolean(WSC.query("SELECT Core_Pouring__c FROM Core_SupervisionDetail__c WHERE Core_Supervision__c = '" + supervisionId + "'")[0].getSObjectField("Core_Pouring__c").toString());
+            return Boolean.parseBoolean(query("SELECT Core_Pouring__c FROM Core_SupervisionDetail__c WHERE Core_Supervision__c = '" + supervisionId + "'")[0].getSObjectField("Core_Pouring__c").toString());
         } catch (NullPointerException | ArrayIndexOutOfBoundsException var2) {
             return null;
         }
@@ -1675,7 +1672,7 @@ public class APIQuery {
 
     public static Boolean getBackBarCheckboxBySupervisionId(String supervisionId) {
         try {
-            return Boolean.parseBoolean(WSC.query("SELECT Core_BackBar__c FROM Core_SupervisionDetail__c WHERE Core_Supervision__c = '" + supervisionId + "'")[0].getSObjectField("Core_BackBar__c").toString());
+            return Boolean.parseBoolean(query("SELECT Core_BackBar__c FROM Core_SupervisionDetail__c WHERE Core_Supervision__c = '" + supervisionId + "'")[0].getSObjectField("Core_BackBar__c").toString());
         } catch (NullPointerException | ArrayIndexOutOfBoundsException var2) {
             return null;
         }
@@ -1683,7 +1680,7 @@ public class APIQuery {
 
     public static Boolean getOnMenuCheckboxBySupervisionId(String supervisionId) {
         try {
-            return Boolean.parseBoolean(WSC.query("SELECT Core_OnMenu__c FROM Core_SupervisionDetail__c WHERE Core_Supervision__c = '" + supervisionId + "'")[0].getSObjectField("Core_OnMenu__c").toString());
+            return Boolean.parseBoolean(query("SELECT Core_OnMenu__c FROM Core_SupervisionDetail__c WHERE Core_Supervision__c = '" + supervisionId + "'")[0].getSObjectField("Core_OnMenu__c").toString());
         } catch (NullPointerException | ArrayIndexOutOfBoundsException var2) {
             return null;
         }
@@ -1691,7 +1688,7 @@ public class APIQuery {
 
     public static Boolean getDistributionCheckboxBySupervisionId(String supervisionId) {
         try {
-            return Boolean.parseBoolean(WSC.query("SELECT Core_Distribution__c FROM Core_SupervisionDetail__c WHERE Core_Supervision__c = '" + supervisionId + "'")[0].getSObjectField("Core_Distribution__c").toString());
+            return Boolean.parseBoolean(query("SELECT Core_Distribution__c FROM Core_SupervisionDetail__c WHERE Core_Supervision__c = '" + supervisionId + "'")[0].getSObjectField("Core_Distribution__c").toString());
         } catch (NullPointerException | ArrayIndexOutOfBoundsException var2) {
             return null;
         }
@@ -1699,7 +1696,7 @@ public class APIQuery {
 
     public static String getSupervisedVolumesAmountBySupervisionId(String supervisionId) {
         try {
-            return WSC.query("SELECT Core_IncreasedVolume__c FROM Core_SupervisionDetail__c WHERE Core_Supervision__c = '" + supervisionId + "'")[0].getSObjectField("Core_IncreasedVolume__c").toString();
+            return query("SELECT Core_IncreasedVolume__c FROM Core_SupervisionDetail__c WHERE Core_Supervision__c = '" + supervisionId + "'")[0].getSObjectField("Core_IncreasedVolume__c").toString();
         } catch (NullPointerException | ArrayIndexOutOfBoundsException var2) {
             return null;
         }

@@ -1,7 +1,7 @@
-package com.customertimes.api;
+package helpers.api;
 
-import com.customertimes.config.AppUser;
-import com.customertimes.config.Parameter;
+import helpers.config2test.AppUser;
+import helpers.config2test.Parameter;
 import kong.unirest.HttpRequest;
 import kong.unirest.HttpResponse;
 import kong.unirest.Unirest;

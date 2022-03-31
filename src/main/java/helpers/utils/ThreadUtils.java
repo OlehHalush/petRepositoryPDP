@@ -1,7 +1,7 @@
-package utils;
+package helpers.utils;
 
-import com.customertimes.config.AppUser;
-import com.customertimes.config.Session;
+import helpers.config2test.AppUser;
+import helpers.config2test.Session;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +11,7 @@ import java.util.Map;
 public class ThreadUtils {
 
     private static final List<Thread> threads = new ArrayList<>();
-    private static final Map<Thread, HashMap<AppUser, Session>> drivers = new HashMap<>();
+    private static final Map<Thread, HashMap<AppUser, Session>> mobileDrivers = new HashMap<>();
 
     public synchronized static void registerCurrentThread() {
         if (!threads.contains(Thread.currentThread()) && !threads.contains(null)) {
@@ -22,20 +22,19 @@ public class ThreadUtils {
         }
     }
 
-    public synchronized static HashMap<AppUser, Session> getDrivers() {
-        if (!drivers.containsKey(Thread.currentThread())) {
-            drivers.put(Thread.currentThread(), new HashMap<>());
+    public synchronized static HashMap<AppUser, Session> getMobileDrivers() {
+        if (!mobileDrivers.containsKey(Thread.currentThread())) {
+            mobileDrivers.put(Thread.currentThread(), new HashMap<>());
         }
-        return drivers.get(Thread.currentThread());
+        return mobileDrivers.get(Thread.currentThread());
     }
 
     public synchronized static void quitDrivers() {
-        for (Thread thread : drivers.keySet()) {
-            for (AppUser appUser : drivers.get(thread).keySet()) {
-                if (drivers.get(thread).get(appUser) != null) {
-                    drivers.get(thread).get(appUser).quitWebDriver();
-                    drivers.get(thread).get(appUser).quitMobileDriver();
-                    drivers.get(thread).put(appUser, null);
+        for (Thread thread : mobileDrivers.keySet()) {
+            for (AppUser appUser : mobileDrivers.get(thread).keySet()) {
+                if (mobileDrivers.get(thread).get(appUser) != null) {
+                    mobileDrivers.get(thread).get(appUser).quitDriver();
+                    mobileDrivers.get(thread).put(appUser, null);
                 }
             }
             if (threads.contains(thread)) {
@@ -47,11 +46,10 @@ public class ThreadUtils {
     public synchronized static void quitIdleThreadsDrivers() {
         for (Thread thread : threads) {
             if (thread != null && thread.getState().equals(Thread.State.WAITING)) {
-                for (AppUser appUser : drivers.get(thread).keySet()) {
-                    if (drivers.get(thread).get(appUser) != null) {
-                        drivers.get(thread).get(appUser).quitWebDriver();
-                        drivers.get(thread).get(appUser).quitMobileDriver();
-                        drivers.get(thread).put(appUser, null);
+                for (AppUser appUser : mobileDrivers.get(thread).keySet()) {
+                    if (mobileDrivers.get(thread).get(appUser) != null) {
+                        mobileDrivers.get(thread).get(appUser).quitDriver();
+                        mobileDrivers.get(thread).put(appUser, null);
                     }
                 }
                 threads.set(threads.indexOf(thread), null);

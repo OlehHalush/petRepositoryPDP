@@ -1,4 +1,6 @@
-package utils;
+package helpers.utils;
+
+import helpers.config2test.Session;
 
 import javax.mail.*;
 import javax.mail.internet.MimeBodyPart;

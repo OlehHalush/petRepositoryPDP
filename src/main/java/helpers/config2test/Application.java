@@ -1,4 +1,4 @@
-package com.customertimes.config;
+package helpers.config2test;
 
 public enum Application {
     AMALIA("Amalia", "com.ct.bacardi") {

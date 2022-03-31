@@ -1,4 +1,4 @@
-package com.customertimes.config;
+package helpers.config2test;
 
 public enum PageTitle {
     IONIC_APP("Ionic App"),

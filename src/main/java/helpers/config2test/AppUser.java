@@ -1,7 +1,7 @@
-package com.customertimes.config;
+package helpers.config2test;
 
-import com.customertimes.util.NetUtils;
-import com.customertimes.util.Timeouts;
+import helpers.utils.NetUtils;
+import helpers.utils.Timeouts;
 import io.appium.java_client.remote.IOSMobileCapabilityType;
 import io.appium.java_client.remote.MobileCapabilityType;
 import org.openqa.selenium.MutableCapabilities;
