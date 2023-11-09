@@ -17,5 +17,5 @@ public class DownloadPage extends BasePage {
     public boolean isDownloadPageDisplayed() {
         return timeTrackingAppsHeader.isDisplayed();
     }
-    //asd
+
 }
