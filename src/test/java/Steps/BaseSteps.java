@@ -17,7 +17,7 @@ public class BaseSteps {
 
     public BaseSteps(WebDriver driver) {
         this.driver = driver;
-        wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT).toMillis());
+        wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT));
     }
 
     @Attachment(value = "Page screenshot", type = "image/png")
