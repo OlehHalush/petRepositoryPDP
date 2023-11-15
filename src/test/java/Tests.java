@@ -49,7 +49,7 @@ public class Tests {
         new HomePageSteps(Driver.getDriver())
                 .verifyHomePageIsDisplayed()
                 .clickDownloadButton()
-                .verifyDownloadPageIsDisplayed(new User("User1", "Password1"));
+                .verifyDownloadPageIsDisplayed();
     }
 
     @AfterClass(description = "Quit drivers")

@@ -40,6 +40,7 @@ public enum DriverType {
 
             chromeOptions.setCapability("selenoid:options", selenoidOptions);
             chromeOptions.setCapability("browserName", "chrome");
+            chromeOptions.setCapability("browserVersion", "119.0");
 
             return chromeOptions;
         }

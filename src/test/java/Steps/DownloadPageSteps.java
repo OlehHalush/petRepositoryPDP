@@ -14,8 +14,8 @@ public class DownloadPageSteps extends BaseSteps {
         downloadPage = new DownloadPage(driver);
     }
 
-    @Step("Verify download page is displayed. User name {user.name} and User password {user.password}")
-    public DownloadPageSteps verifyDownloadPageIsDisplayed(User user) {
+    @Step("Verify download page is displayed")
+    public DownloadPageSteps verifyDownloadPageIsDisplayed() {
         wait.until(driver -> downloadPage.isDownloadPageDisplayed());
         Assert.assertTrue(downloadPage.isDownloadPageDisplayed(), "Download page is not displayed.");
         saveScreenshot();

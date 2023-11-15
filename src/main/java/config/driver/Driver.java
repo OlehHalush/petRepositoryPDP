@@ -11,15 +11,15 @@ import java.net.URL;
 
 public class Driver {
     public static final boolean IS_REMOTE = ConfigReader.getRunParameter("remote").equalsIgnoreCase("true");
+    public static final DriverType DRIVER_TYPE = DriverType.valueOf(ConfigReader.getRunParameter("driver.type").toUpperCase());
     private static final ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
 
     private static WebDriver createNewDriver() {
-        DriverType driverType = DriverType.CHROME;
-        MutableCapabilities capabilities = driverType.getDesiredCapabilities();
+        MutableCapabilities capabilities = DRIVER_TYPE.getDesiredCapabilities();
         if (IS_REMOTE) {
             driverThreadLocal.set(createNewRemoteDriver(capabilities));
         } else {
-            driverThreadLocal.set(driverType.getWebDriverObject(capabilities));
+            driverThreadLocal.set(DRIVER_TYPE.getWebDriverObject(capabilities));
         }
         return driverThreadLocal.get();
     }

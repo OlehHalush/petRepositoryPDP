@@ -23,7 +23,7 @@ public class Tests2 {
         new HomePageSteps(Driver.getDriver())
                 .verifyHomePageIsDisplayed()
                 .clickDownloadButton()
-                .verifyDownloadPageIsDisplayed(new User("User2", "Password2"));
+                .verifyDownloadPageIsDisplayed();
     }
 
     @Test
