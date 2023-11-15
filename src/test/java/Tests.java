@@ -1,5 +1,5 @@
 import Steps.HomePageSteps;
-import config.Driver;
+import config.driver.Driver;
 import io.qameta.allure.*;
 import model.User;
 import org.testng.annotations.AfterClass;

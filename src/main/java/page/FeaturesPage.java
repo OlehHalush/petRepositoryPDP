@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class FeaturesPage extends BasePage {
-    @FindBy(xpath = "//div[@class='features_page']//h1[text()='Time tracker']")
+    @FindBy(xpath = "//div[@class='features_page']//h2[text()='Time tracker']")
     private WebElement timeTrackerHeader;
 
     public FeaturesPage(WebDriver driver) {

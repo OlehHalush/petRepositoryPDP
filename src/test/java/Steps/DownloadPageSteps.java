@@ -1,6 +1,5 @@
 package Steps;
 
-import config.Driver;
 import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;

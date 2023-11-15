@@ -1,5 +1,5 @@
 import Steps.HomePageSteps;
-import config.Driver;
+import config.driver.Driver;
 import org.testng.annotations.*;
 import model.User;
 
