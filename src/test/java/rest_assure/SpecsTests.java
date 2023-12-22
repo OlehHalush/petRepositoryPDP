@@ -1,5 +1,6 @@
 package rest_assure;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
@@ -36,7 +37,7 @@ public class SpecsTests extends BaseClass {
     }
 
     @Test
-    public void usingReqAndRespSpecsFromBaseClass() {
+    public void usingReqAndRespSpecsFromBaseClass() throws JsonProcessingException {
         //RequestSpecification from Before class
         RestAssured
                 .given()
