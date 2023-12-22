@@ -1,9 +1,8 @@
 package rest_assure;
 
-import MapperObjects.User;
+import mapper_objects.User;
 import io.restassured.RestAssured;
 import io.restassured.mapper.ObjectMapperType;
-import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 
 import static org.testng.Assert.assertEquals;

@@ -3,53 +3,54 @@ package rest_assure;
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
-import io.restassured.config.LogConfig;
-import io.restassured.config.RestAssuredConfig;
-import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
-import io.restassured.specification.RequestSpecification;
-import io.restassured.specification.ResponseSpecification;
-import org.testng.annotations.*;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Test;
+
+import static org.hamcrest.Matchers.equalTo;
 
 public class SpecsTests extends BaseClass {
 
-    @BeforeTest
+    @BeforeMethod
     public void setup() {
         RestAssured.requestSpecification = new RequestSpecBuilder()
-                .setBaseUri(BASE_URL).build();
+                .setBaseUri(BASE_URL + "/rate_limit").build();
         RestAssured.responseSpecification = new ResponseSpecBuilder()
                 .expectStatusCode(200)
                 .expectContentType(ContentType.JSON).build();
+
+        enableLogging();
     }
 
-    @AfterTest
-    public void cleanup(){
+    @AfterMethod
+    public void cleanup() {
         RestAssured.requestSpecification = null;
         RestAssured.responseSpecification = null;
     }
 
     @Test
-    public void testWithUsingReqAndRespSpecsOutsideTheTest() {
+    public void testWithUsingReqAndRespSpecsFromBeforeMethod() {
+        //RequestSpecification from Before method
         RestAssured.get();
     }
 
     @Test
-    public void usingReqAndRespSpecsInside() {
-        RequestSpecification requestSpecification = new RequestSpecBuilder()
-                .setBaseUri(BASE_URL).build();
-        ResponseSpecification responseSpecification = new ResponseSpecBuilder()
-                .expectContentType(ContentType.JSON)
-                .expectStatusCode(200)
-                .build();
-        RestAssuredConfig config = new RestAssuredConfig()
-                .logConfig(LogConfig.logConfig().enableLoggingOfRequestAndResponseIfValidationFails(LogDetail.ALL));
-
+    public void usingReqAndRespSpecsFromBaseClass() {
+        //RequestSpecification from Before class
         RestAssured
                 .given()
-                .config(config)
-                .spec(requestSpecification)
+                .spec(baseRequestSpec)
+                .basePath("/rate_limit")
                 .get()
                 .then()
-                .spec(responseSpecification);
+                .spec(baseResponseSpec)
+                .rootPath("resources.core")
+                .body("limit", equalTo(60))
+                .body("remaining", equalTo(60))
+                .body("resource", equalTo("core"))
+                .rootPath("resources.search")
+                .body("limit", equalTo(10))
+                .body("resource", equalTo("search"));
     }
 }
