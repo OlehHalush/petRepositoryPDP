@@ -1,8 +1,10 @@
 package Steps;
 
-import org.junit.Assert;
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 import page.DownloadPage;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DownloadPageSteps extends BaseSteps {
     private DownloadPage downloadPage;
@@ -12,8 +14,9 @@ public class DownloadPageSteps extends BaseSteps {
         downloadPage = new DownloadPage(driver);
     }
 
+    @Step
     public DownloadPageSteps verifyDownloadPageIsDisplayed() {
-        Assert.assertTrue("Download page is not displayed.", downloadPage.isDownloadPageDisplayed());
+        assertTrue(downloadPage.isDesktopHeaderDisplayed(), "Download page is not displayed.");
         return this;
     }
 }

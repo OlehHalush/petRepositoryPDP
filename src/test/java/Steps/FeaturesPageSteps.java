@@ -1,6 +1,7 @@
 package Steps;
 
-import org.junit.Assert;
+import io.qameta.allure.Step;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import page.FeaturesPage;
 
@@ -12,8 +13,9 @@ public class FeaturesPageSteps extends BaseSteps {
         featuresPage = new FeaturesPage(driver);
     }
 
+    @Step
     public FeaturesPageSteps verifyFeaturesPageIsDisplayed() {
-        Assert.assertTrue("Features page is not displayed.", featuresPage.isFeaturePageDisplayed());
+        Assertions.assertTrue(featuresPage.isTimekeepingHeaderDisplayed(), "Features page is not displayed.");
         return this;
     }
 }

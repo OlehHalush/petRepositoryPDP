@@ -11,13 +11,13 @@ public class HomePage extends BasePage {
         super(driver);
     }
 
-    @FindBy(xpath = "//button[@class='hero__button']")
+    @FindBy(className = "btn-get-started")
     private WebElement getStartedButton;
 
-    @FindBy(xpath = "//header//ul[@class='header__row__item_left']//a[text()='Features']")
+    @FindBy(id = "features")
     private WebElement featuresButton;
 
-    @FindBy(xpath = "//header//ul[@class='header__row__item_left']//a[text()='Download']")
+    @FindBy(id = "downloads")
     private WebElement downloadButton;
 
     public boolean isHomePageDisplayed() {

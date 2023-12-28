@@ -1,6 +1,7 @@
 package Steps;
 
-import org.junit.Assert;
+import io.qameta.allure.Step;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.WebDriver;
 import page.SignUpPage;
 
@@ -12,8 +13,9 @@ public class SignUpPageSteps extends BaseSteps {
         signUpPage = new SignUpPage(driver);
     }
 
+    @Step
     public SignUpPageSteps verifySignUpPageIsDisplayed() {
-        Assert.assertTrue("Sign Up page is not displayed", signUpPage.isSignUpPageDisplayed());
+        Assertions.assertTrue(signUpPage.isSignUpPageDisplayed(), "Sign Up page is not displayed");
         return this;
     }
 }

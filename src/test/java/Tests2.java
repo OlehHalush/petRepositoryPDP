@@ -2,9 +2,9 @@ import Steps.HomePageSteps;
 import config.Driver;
 import org.junit.jupiter.api.Test;
 
-public class Tests extends BaseTest {
+public class Tests2 extends BaseTest {
     @Test
-    public void openSignUpPage1() {
+    public void openSignUpPage2() {
         new HomePageSteps(Driver.getDriver())
                 .verifyHomePageIsDisplayed()
                 .clickGetStartedButton()
@@ -12,7 +12,7 @@ public class Tests extends BaseTest {
     }
 
     @Test
-    public void openFeaturesPage1() {
+    public void openFeaturesPage2() {
         new HomePageSteps(Driver.getDriver())
                 .verifyHomePageIsDisplayed()
                 .clickFeaturesButton()
@@ -20,7 +20,7 @@ public class Tests extends BaseTest {
     }
 
     @Test
-    public void openDownloadPage1() {
+    public void openDownloadPage2() {
         new HomePageSteps(Driver.getDriver())
                 .verifyHomePageIsDisplayed()
                 .clickDownloadButton()
