@@ -10,7 +10,7 @@ public abstract class BasePage {
 
     public BasePage(WebDriver driver) {
         this.driver = driver;
-        PageFactory.initElements(driver, this);
+        PageFactory.initElements(this.driver, this);
     }
 
     @FindBy(xpath = "//header//img[@alt='Clockify logo']")

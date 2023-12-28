@@ -11,8 +11,8 @@ public class BaseSteps {
     protected WebDriver driver;
 
     public BaseSteps(WebDriver driver) {
-        driver.manage().timeouts().implicitlyWait(TIMEOUT, TimeUnit.SECONDS);
         this.driver = driver;
+        this.driver.manage().timeouts().implicitlyWait(TIMEOUT, TimeUnit.SECONDS);
     }
 
     @Step
