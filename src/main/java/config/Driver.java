@@ -9,6 +9,8 @@ import java.util.concurrent.TimeUnit;
 public class Driver {
     private static final ThreadLocal<WebDriver> driverThreadLocal = new ThreadLocal<>();
 
+    //todo
+
     public static WebDriver getDriver() {
         if (driverThreadLocal.get() != null) {
             return driverThreadLocal.get();
