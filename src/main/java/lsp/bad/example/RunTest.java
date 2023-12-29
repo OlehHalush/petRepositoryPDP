@@ -8,10 +8,12 @@ public class RunTest {
 
         System.out.println("========Apple color========");
         apple.getColor();
+        //principle break here
         System.out.println("========Orange color========");
         orange.getColor();
         System.out.println("========Real orange color========");
         realOrange.getColor();
+
     }
 
 }
