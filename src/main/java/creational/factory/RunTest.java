@@ -1,5 +1,5 @@
 package creational.factory;
-
+//https://www.digitalocean.com/community/tutorials/factory-design-pattern-in-java
 public class RunTest {
     public static void main(String[] args) {
         Computer pc = ComputerFactory.getComputer("PC", "16", "1Tb", "Intel i9");

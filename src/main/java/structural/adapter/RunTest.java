@@ -1,5 +1,6 @@
 package structural.adapter;
 
+//https://www.digitalocean.com/community/tutorials/adapter-design-pattern-java
 public class RunTest {
 
     public static void main(String[] args) {

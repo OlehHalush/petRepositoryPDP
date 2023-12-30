@@ -1,5 +1,6 @@
 package structural.composite;
 
+//https://www.digitalocean.com/community/tutorials/composite-design-pattern-in-java
 public class RunTest {
     public static void main(String[] args) {
         Shape square1 = new Square();
