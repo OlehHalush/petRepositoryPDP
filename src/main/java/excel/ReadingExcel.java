@@ -50,7 +50,7 @@ public class ReadingExcel {
         return excelContentMap;
     }
 
-    public static List<String> getColumnValues(Workbook workbook, String tabName, String columnName) {
+    public static List<String> getColumnValues(Workbook workbook, String tabName, String columnName) throws IOException {
         DataFormatter formatter = new DataFormatter();
         Sheet sheet = workbook.getSheet(tabName);
         Row titlesRow = sheet.getRow(sheet.getTopRow());
@@ -68,6 +68,7 @@ public class ReadingExcel {
                 }
             }
         }
+        workbook.close();
         return columnValues;
     }
 }
