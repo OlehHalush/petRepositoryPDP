@@ -30,7 +30,7 @@ pipeline {
             steps {
                 script {
                     // Run all tests using TestNG
-                    sh 'mvn test'
+                    sh 'mvn test -Dremote=false -Ddriver.type=chrome'
                 }
             }
         }
