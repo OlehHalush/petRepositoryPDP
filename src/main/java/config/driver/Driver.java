@@ -33,8 +33,8 @@ public class Driver {
         RemoteWebDriver driver;
         try {
             ChromeOptions options = new ChromeOptions();
-//            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options);
-            driver = new RemoteWebDriver(new URL("http://localhost:4444"), options);
+            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), options); //Selenoid
+//            driver = new RemoteWebDriver(new URL("http://localhost:4444"), options); //Selenium grid
         } catch (MalformedURLException e) {
             throw new RuntimeException("\nCouldn't start REMOTE WEB DRIVER!\n", e);
         }
