@@ -3,6 +3,7 @@ package config.driver;
 import config.ConfigReader;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -29,7 +30,8 @@ public class Driver {
     private static RemoteWebDriver createNewRemoteDriver(MutableCapabilities capabilities) {
         RemoteWebDriver driver;
         try {
-            driver = new RemoteWebDriver(new URL("http://localhost:4444/wd/hub"), capabilities);
+            ChromeOptions options = new ChromeOptions();
+            driver = new RemoteWebDriver(new URL("http://localhost:4444"), options);
         } catch (MalformedURLException e) {
             throw new RuntimeException("\nCouldn't start REMOTE WEB DRIVER!\n", e);
         }
