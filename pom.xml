@@ -13,6 +13,7 @@
         <java.version>11</java.version>
         <maven.compiler.version>3.11.0</maven.compiler.version>
         <aspectj.version>1.9.20.1</aspectj.version>
+        <suiteXmlFile>run_single_test.xml</suiteXmlFile>
     </properties>
 
     <dependencies>
@@ -74,9 +75,10 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>3.2.2</version>
                 <configuration>
-<!--                    <suiteXmlFiles>-->
+                    <suiteXmlFiles>
 <!--                        <suiteXmlFile>run_single_test.xml</suiteXmlFile>-->
-<!--                    </suiteXmlFiles>-->
+                        <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
+                    </suiteXmlFiles>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                         -Dallure.results.directory=${project.build.directory}/reports/allure-results
