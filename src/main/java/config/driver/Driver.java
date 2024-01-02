@@ -1,11 +1,9 @@
 package config.driver;
 
 import config.ConfigReader;
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
-import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -33,8 +31,8 @@ public class Driver {
         RemoteWebDriver driver;
         try {
             ChromeOptions options = new ChromeOptions();
-            driver = new RemoteWebDriver(new URL("http://node-docker:4444/wd/hub"), options); //Selenoid
-//            driver = new RemoteWebDriver(new URL("http://localhost:4444"), options); //Selenium grid
+            driver = new RemoteWebDriver(new URL("http://node-docker:4444/wd/hub"), options); //remote run from jenkins with selenium grid
+//            driver = new RemoteWebDriver(new URL("http://localhost:4444"), options); //local run with selenium grid
         } catch (MalformedURLException e) {
             throw new RuntimeException("\nCouldn't start REMOTE WEB DRIVER!\n", e);
         }

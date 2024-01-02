@@ -4,7 +4,10 @@ services:
     image: jenkins/jenkins:lts
     ports:
       - 8080:8080
-      - 50000-50000
+      - 50000:50000
+    networks:
+      - my-bridge-network
+
   node-docker:
     image: selenium/standalone-chrome:latest
     environment:
@@ -12,3 +15,9 @@ services:
     ports:
       - 4444:4444
       - 7900:7900
+    networks:
+      - my-bridge-network
+
+networks:
+  my-bridge-network:
+    driver: bridge
