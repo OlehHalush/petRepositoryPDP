@@ -24,13 +24,7 @@ public class Driver {
             driverThreadLocal.set(createNewRemoteDriver(capabilities));
         } else {
             System.out.println("RUNNING LOCAL");
-
-            DesiredCapabilities capabilities1 = new DesiredCapabilities();
-            ChromeOptions options = new ChromeOptions();
-            options.setCapability("browserName", "chrome");
-            options.setCapability("browserVersion", "119.0");
-            capabilities1.setCapability(ChromeOptions.CAPABILITY, options);
-            driverThreadLocal.set(DRIVER_TYPE.getWebDriverObject(capabilities1));
+            driverThreadLocal.set(DRIVER_TYPE.getWebDriverObject(capabilities));
         }
         return driverThreadLocal.get();
     }

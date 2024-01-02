@@ -36,9 +36,9 @@ public enum DriverType {
             ChromeOptions chromeOptions = new ChromeOptions();
 
             Map<String, Object> selenoidOptions = new HashMap<>();
-            selenoidOptions.put("enableVNC", true);
+//            selenoidOptions.put("enableVNC", true);
 
-            chromeOptions.setCapability("selenoid:options", selenoidOptions);
+//            chromeOptions.setCapability("selenoid:options", selenoidOptions);
             chromeOptions.setCapability("browserName", "chrome");
             chromeOptions.setCapability("browserVersion", "119.0");
 
