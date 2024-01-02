@@ -76,7 +76,6 @@
                 <version>3.2.2</version>
                 <configuration>
                     <suiteXmlFiles>
-<!--                        <suiteXmlFile>run_single_test.xml</suiteXmlFile>-->
                         <suiteXmlFile>${suiteXmlFile}</suiteXmlFile>
                     </suiteXmlFiles>
                     <argLine>
