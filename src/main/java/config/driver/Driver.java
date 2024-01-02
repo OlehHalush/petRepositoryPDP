@@ -1,9 +1,11 @@
 package config.driver;
 
 import config.ConfigReader;
+import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.MutableCapabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.LocalFileDetector;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
@@ -22,7 +24,13 @@ public class Driver {
             driverThreadLocal.set(createNewRemoteDriver(capabilities));
         } else {
             System.out.println("RUNNING LOCAL");
-            driverThreadLocal.set(DRIVER_TYPE.getWebDriverObject(capabilities));
+
+            DesiredCapabilities capabilities1 = new DesiredCapabilities();
+            ChromeOptions options = new ChromeOptions();
+            options.setCapability("browserName", "chrome");
+            options.setCapability("browserVersion", "119.0");
+            capabilities1.setCapability(ChromeOptions.CAPABILITY, options);
+            driverThreadLocal.set(DRIVER_TYPE.getWebDriverObject(capabilities1));
         }
         return driverThreadLocal.get();
     }
