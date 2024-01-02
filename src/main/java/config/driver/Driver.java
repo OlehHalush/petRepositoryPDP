@@ -17,8 +17,10 @@ public class Driver {
     private static WebDriver createNewDriver() {
         MutableCapabilities capabilities = DRIVER_TYPE.getDesiredCapabilities();
         if (IS_REMOTE) {
+            System.out.println("RUNNING REMOTE");
             driverThreadLocal.set(createNewRemoteDriver(capabilities));
         } else {
+            System.out.println("RUNNING LOCAL");
             driverThreadLocal.set(DRIVER_TYPE.getWebDriverObject(capabilities));
         }
         return driverThreadLocal.get();
