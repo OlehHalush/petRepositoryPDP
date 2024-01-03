@@ -1,9 +1,9 @@
 import Steps.HomePageSteps;
 import config.driver.Driver;
 import io.qameta.allure.*;
-import model.User;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 
@@ -54,6 +54,7 @@ public class Tests {
 
     @AfterClass(description = "Quit drivers")
     public void afterMethod() {
+        System.out.println("QUIT DRIVER");
         Driver.quitDriver();
     }
 

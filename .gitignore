@@ -4,3 +4,4 @@ target
 .DS_Store
 /run.properties*
 .allure/
+*.log

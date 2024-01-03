@@ -1,6 +1,9 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="Test-class Suite" parallel="classes" thread-count="3" >
+    <listeners>
+        <listener class-name="listeners.AttachScreenshotOnFailListener"></listener>
+    </listeners>
     <test name="Test-class test" >
         <classes>
             <class name="Tests" />

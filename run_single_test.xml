@@ -1,10 +1,16 @@
-<suite name="Test-method Suite" parallel="methods" thread-count="1" >
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Test-method Suite" parallel="methods" thread-count="1">
+    <listeners>
+        <listener class-name="listeners.AttachScreenshotOnFailListener"></listener>
+    </listeners>
     <test name="Test-method test" group-by-instances="true">
         <classes>
-            <class name="Tests" />
-            <methods>
-                <include name = "openSignUpPage" />
-            </methods>
+            <class name="Tests">
+                <methods>
+                    <include name="openSignUpPage"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

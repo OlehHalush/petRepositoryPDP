@@ -20,7 +20,7 @@ public class BaseSteps {
         wait = new WebDriverWait(driver, Duration.ofSeconds(TIMEOUT));
     }
 
-    @Attachment(value = "Page screenshot", type = "image/png")
+//    @Attachment(value = "Page screenshot", type = "image/png")
     public byte[] saveScreenshot() {
         return ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
     }
