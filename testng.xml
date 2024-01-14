@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+
+<suite name="HO test suite" parallel="classes" verbose="1">
+    <test name="run tests in parallel by classes" thread-count="3">
+        <classes>
+            <class name="FirstTest"></class>
+            <class name="SecondTest"></class>
+            <class name="ThirdTest"></class>
+        </classes>
+    </test>
+</suite>
